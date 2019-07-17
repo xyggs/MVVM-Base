@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+
+    defaultConfig {
+        minSdkVersion 28
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'androidx.core:core-ktx:1.2.0-alpha02'
+    //权限管理
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //加载占位
+    api 'com.kingja.loadsir:loadsir:1.3.6'
+    //图片选择
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    //分包
+    api 'com.android.support:multidex:1.0.3'
+    //Android底部导航栏████几行代码实现Tab导航（随意定制加号，带红点消息提示）
+    api 'com.github.forvv231:EasyNavigation:1.0.3'
+    //⭐🎉满足各种日常使用的标题栏，不要让你的时间浪费在写标题栏上。
+    api 'com.github.loperSeven:TitleBar:1.0.4'
+    //沉浸式状态栏
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    //事件总线
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //网络库
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    api 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    //协程
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha02"
+}
